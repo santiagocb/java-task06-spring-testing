@@ -3,9 +3,10 @@ The target of this exercise is to practice Spring JMS and Spring Testing with Ja
 
 ## Features
 - JMS and Spring Testing
-- Usage of JPA to interact with Persistence API in a booking backend.
+- Usage of JPA to interact with Persistence API in a booking backend
 - Usage of Hibernate
 - Based on https://github.com/santiagocb/java-task05-spring-mvc
+- Usage of awaitility to test Async process.
 
 ## Requirements
 - Install Docker
@@ -18,3 +19,6 @@ The target of this exercise is to practice Spring JMS and Spring Testing with Ja
 3. Run activemq through Docker with following command: `docker run --rm -d --name activemq -p 61616:61616 -p 8161:8161 rmohr/activemq`
 4. Run maven spring boot run.
 5. Run command to stop Docker execution: `docker stop lil-postgres`
+
+## Output tests
+![Screenshot 2024-10-30 at 12 00 59 AM](https://github.com/user-attachments/assets/943b2c6c-508b-4827-a3b6-019ff9763b5a)
