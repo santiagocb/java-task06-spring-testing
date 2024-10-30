@@ -14,7 +14,7 @@ The target of this exercise is to practice Spring JMS and Spring Testing with Ja
 
 ## Run the project
 1. Run docker compose command: `docker-compose up -d`
-2. Run maven spring boot run
+2. Run maven spring boot run to bootstrap embedded Tomcat server locally
 3. Use postman collection to check the rest endpoints
 3. Run docker compose command: `docker-compose down`
 
