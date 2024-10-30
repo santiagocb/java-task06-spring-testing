@@ -20,3 +20,6 @@ The target of this exercise is to practice Spring JMS and Spring Testing with Ja
 
 ## Output tests
 ![Screenshot 2024-10-30 at 12 00 59 AM](https://github.com/user-attachments/assets/943b2c6c-508b-4827-a3b6-019ff9763b5a)
+
+## Postman collection
+![Screenshot 2024-10-30 at 12 10 57 AM](https://github.com/user-attachments/assets/8cfd62ec-a234-430c-a1d0-c0e0246abcae)
