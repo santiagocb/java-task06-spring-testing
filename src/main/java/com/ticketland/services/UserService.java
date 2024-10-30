@@ -17,10 +17,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void register(User user) {
-        System.out.println(user.getId());
-        System.out.println(user.getName());
-        userRepository.save(user);
+    public User register(User user) {
+        return userRepository.save(user);
     }
 
     public User getById(String userId) {

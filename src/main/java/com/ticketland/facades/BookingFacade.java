@@ -49,6 +49,18 @@ public class BookingFacade {
         return ticketService.generate(new Ticket(account, event));
     }
 
+    public Ticket bookTicketAsync(String userId, String eventId) throws InsufficientFundsException {
+        UserAccount account = userAccountService.findByUserId(userId);
+        Event event = eventService.findByEventId(eventId);
+
+        if (account.getBalance() < event.getTicketPrice()) {
+            throw new InsufficientFundsException("Insufficient funds to book the ticket.");
+        }
+        userAccountService.refillBalance(userId, event.getTicketPrice() * -1);
+
+        return ticketService.generate(new Ticket(account, event));
+    }
+
     public void refillAccount(String userId, double amount) {
         userAccountService.refillBalance(userId, amount);
     }

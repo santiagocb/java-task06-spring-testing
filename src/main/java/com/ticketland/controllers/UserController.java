@@ -22,7 +22,6 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<UserAccount>> getUsers() {
         return ResponseEntity.ok(bookingFacade.getAllUserAccounts());
-
     }
 
     @GetMapping("/users/{userId}")
@@ -37,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserAccount> createUser(User user) {
+    public ResponseEntity<UserAccount> createUser(@RequestBody User user) {
         return ResponseEntity.ok(bookingFacade.createUser(user));
     }
 

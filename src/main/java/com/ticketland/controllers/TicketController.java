@@ -17,10 +17,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.transform.stream.StreamSource;
@@ -30,7 +30,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 public class TicketController {
 
     public static final Logger logger = LoggerFactory.getLogger(TicketController.class);
@@ -51,7 +51,7 @@ public class TicketController {
 
 
     @GetMapping("/tickets/user")
-    public ResponseEntity<Object> getBookedTickets(@RequestParam(value = "userId") String userId) {
+    public ResponseEntity<Object> getBookedTickets(@RequestParam(value = "id") String userId) {
         try {
             UserAccount user = bookingFacade.getUserAccount(userId);
             List<Ticket> tickets = bookingFacade.getTicketsByUserAccountId(user.getId());
@@ -64,7 +64,7 @@ public class TicketController {
     }
 
     @GetMapping(value = "/tickets/user", params = "downloadPdf=true")
-    public ResponseEntity<?> downloadTickets(@RequestParam(value = "userId") String userId) {
+    public ResponseEntity<?> downloadTickets(@RequestParam(value = "id") String userId) {
         UserAccount user = bookingFacade.getUserAccount(userId);
         List<Ticket> tickets = bookingFacade.getBookedTickets(user, 100, 1);;
         HttpHeaders headers = new HttpHeaders();

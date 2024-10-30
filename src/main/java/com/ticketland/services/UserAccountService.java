@@ -26,6 +26,7 @@ public class UserAccountService {
     }
 
     public UserAccount createAccount(String userId) {
+        logger.info("User account {} is going to be created", userId);
         var user = userService.getById(userId);
         return userAccountRepository.save(new UserAccount(userId, 0, user));
     }
