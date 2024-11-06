@@ -1,4 +1,4 @@
-# Java Spring Data Access
+# Java Spring Testing
 The target of this exercise is to practice Spring JMS and Spring Testing with Java 17.
 
 ## Features
