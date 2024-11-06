@@ -1,5 +1,7 @@
 package com.ticketland.jms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jms.core.JmsTemplate;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:application.properties")
 public class JmsProducer {
+
+    public static final Logger logger = LoggerFactory.getLogger(JmsProducer.class);
 
     @Value("${spring.custom.booking.queue}")
     private String bookingQueueName;
@@ -22,7 +26,7 @@ public class JmsProducer {
         try {
             jmsTemplate.convertAndSend(bookingQueueName, message);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error while converting and sengind booking message: " + e.getMessage());
         }
     }
 }

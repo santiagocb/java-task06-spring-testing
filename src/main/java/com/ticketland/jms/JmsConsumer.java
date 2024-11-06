@@ -1,11 +1,16 @@
 package com.ticketland.jms;
 
+import com.ticketland.exceptions.InsufficientFundsException;
 import com.ticketland.facades.BookingFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JmsConsumer {
+
+    public static final Logger logger = LoggerFactory.getLogger(JmsProducer.class);
 
     private final BookingFacade bookingFacade;
 
@@ -15,10 +20,16 @@ public class JmsConsumer {
 
     @JmsListener(destination = "${spring.custom.booking.queue}")
     public void receiveMessage(BookingMessage message) {
-        bookingFacade.bookTicket(
-                message.getUserId(),
-                message.getEventId()
-        );
+        try {
+            bookingFacade.bookTicket(
+                    message.getUserId(),
+                    message.getEventId()
+            );
+        } catch (InsufficientFundsException e) {
+            logger.error("Insufficient funds from user " + message.getUserId() + " while booking a ticket for event " + message.getEventId());
+        } catch (Throwable e) {
+            logger.error("Unexpected error: " + e.getMessage());
+        }
     }
 }
 

@@ -27,7 +27,6 @@ public class EventController {
 
     @PostMapping("/events")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        System.out.println(event.getDate());
         return ResponseEntity.ok(bookingFacade.createEvent(event));
     }
 }
